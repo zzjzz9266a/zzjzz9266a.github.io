@@ -1,2 +1,1022 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><meta name="author" content="Ben Wong,wenbinben@gmail.com"><title>hash</title><meta name="description" content="A Blog Powered By Hexo"><meta name="keywords" content="Hexo,HTML,Ben,CSS,安卓,android,Linux,linuxdeepin"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="renderer" content="webkit"><link rel="short icon" href="/images/favicon.png" type="image/x-icon"><link rel="stylesheet" href="/css/style.css"><link rel="stylesheet" href="/css/blog_basic.css"><link rel="stylesheet" href="/css/font-awesome.min.css"><link rel="alternate" type="application/atom+xml" title="ATOM 1.0" href="/atom.xml"></head><body><div class="sidebar animated fadeInDown"><div class="logo-title"><div class="title"><img src="/images/logo@2x.png" style="width:127px;"><h3 title=""><a href="/">hash</a></h3><div class="description"><p>Nothing lasts forever.</p></div></div></div><ul class="social-links"><li><a href="https://twitter.com/Ben_wenbin"><i class="fa fa-twitter"></i></a></li><li><a href="http://instagram.com/hwbinbenben"><i class="fa fa-instagram"></i></a></li><li><a href="/atom.xml"><i class="fa fa-rss"></i></a></li><li><a href="http://weibo.com/ben0036"><i class="fa fa-weibo"></i></a></li></ul><div class="footer"><a target="_blank" href="/"><span>Theme by </span></a><a href="https://www.caicai.me"> CaiCai</a><span>&</span><a href="https://github.com/Ben02/hexo-theme-Anatole"> Ben</a><div class="by_farbox"><a href="https://hexo.io/zh-cn/" target="_blank">Proudly published with Hexo&#65281;</a></div></div></div><div class="main"><div class="page-top animated fadeInDown"><div class="nav"><li><a href="/" class="current">首页</a></li><li><a href="/about">关于</a></li><li><a href="/archives">归档</a></li><li><a href="/links">友链</a></li></div><div class="information"><div class="back_btn"><li><a onclick="window.history.go(-1)" style="display:none;" class="fa fa-chevron-left"> </a></li></div><div class="avatar"><img src="https://secure.gravatar.com/avatar/e71df8021446fe9759a9928b1dd5c28d?s=180&amp;r=G&amp;d="></div></div></div><div class="autopagerize_page_element"><div class="content"><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2017/04/27/二维码从生成到验证/">二维码从生成到验证</a></h3></div><div class="post-content"><p>缘由最近公司进行推广要制作二维码，要求是带logo的，找了一些在线的批量二维码生成工具，都不太符合要求，基本都是为了保证识别率把logo做的很小，看不到log 的细节。我们公司后台是用django做的，正好最近在看一些python的东西，就自己写了几个二维码相关的小脚本，纯当练手了~~
-生成python的一大优势...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2017-04-27</span><i class="fa fa-tag"></i><a href="/tags/二维码/" title="二维码" class="tag">二维码 </a><a href="/tags/python/" title="python" class="tag">python </a><a href="/tags/图像处理/" title="图像处理" class="tag">图像处理 </a></div></div></div></div><div class="post animated fadeInDown"><div class="post-title"><h3><a href="/2017/04/27/hello-world/">Hello World</a></h3></div><div class="post-content"><p>Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in trouble...</p></div><div class="post-footer"><div class="meta"><div class="info"><i class="fa fa-sun-o"></i><span class="date">2017-04-27</span><i class="fa fa-tag"></i></div></div></div></div><div class="pagination"><ul class="clearfix"></ul></div></div></div></div><script src="/js/jquery.js"></script><script src="/js/jquery-migrate-1.2.1.min.js"></script><script src="/js/jquery.appear.js"></script></body></html>
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="卑鄙是卑鄙者的通行证，高尚是高尚者的墓志铭">
+<meta property="og:type" content="website">
+<meta property="og:title" content="DontKnowWhy">
+<meta property="og:url" content="http://zzjzz9266a.github.io/index.html">
+<meta property="og:site_name" content="DontKnowWhy">
+<meta property="og:description" content="卑鄙是卑鄙者的通行证，高尚是高尚者的墓志铭">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="DontKnowWhy">
+<meta name="twitter:description" content="卑鄙是卑鄙者的通行证，高尚是高尚者的墓志铭">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://zzjzz9266a.github.io/"/>
+
+
+
+
+
+  <title>DontKnowWhy</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left 
+   page-home 
+ ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">DontKnowWhy</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">肥肠粉一点都不下饭</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://zzjzz9266a.github.io/2017/04/27/一曲肝肠断/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zzjzz9266a">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DontKnowWhy">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/04/27/一曲肝肠断/" itemprop="url">
+                  一曲肝肠断
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-27T21:03:45+08:00">
+                2017-04-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <script src="/assets/js/DPlayer.min.js"> </script><script src="/assets/js/APlayer.min.js"> </script><h2 id="一曲肝肠断，天涯何处觅知音"><a href="#一曲肝肠断，天涯何处觅知音" class="headerlink" title="一曲肝肠断，天涯何处觅知音"></a>一曲肝肠断，天涯何处觅知音</h2><div id="aplayer0" class="aplayer" style="margin-bottom: 20px;"></div>
+		<script>
+			new APlayer({
+				element: document.getElementById("aplayer0"),
+				narrow: false,
+				autoplay: true,
+				showlrc: 0,
+				music: {
+					title: "爱的箴言",
+					author: "cover 罗大佑",
+					url: "http://dl.stream.kg.qq.com/szkge/75ca522c07e44fd02959d444e2d310f29b3b5aac?ftnrkey=0ad6f51b016125aa1a12ed8ad27e3af9212c46ba62765ee4602ef2343c403b6de744f4947e01608c0812ecc4d32dc5c71f8cfa1fcb19633ee5a9c78622ff29f0&vkey=936AA4E9FEC1BBCCDC93358DD5FB9C7C354183B152DDED045F11A0276E5E4282CB8392181230BD8E408889CC5B950C3ACE324FFEE20A9FA720028EE2E7B9E16FE1DF46A888A5A18B8147ECD5D4F5C04BDE5F600E297DF0A0&fname=1021_fd8a5eedc8fbc2be547e47ef83f987fc6981dead.48.m4a&fromtag=1007&sdtfrom=v1007",
+					pic: "",
+				}
+			});
+		</script>
+<audio id="player" title="爱的箴言" meta="爱的箴言" src="http://dl.stream.kg.qq.com/szkge/75ca522c07e44fd02959d444e2d310f29b3b5aac?ftnrkey=0ad6f51b016125aa1a12ed8ad27e3af9212c46ba62765ee4602ef2343c403b6de744f4947e01608c0812ecc4d32dc5c71f8cfa1fcb19633ee5a9c78622ff29f0&amp;vkey=936AA4E9FEC1BBCCDC93358DD5FB9C7C354183B152DDED045F11A0276E5E4282CB8392181230BD8E408889CC5B950C3ACE324FFEE20A9FA720028EE2E7B9E16FE1DF46A888A5A18B8147ECD5D4F5C04BDE5F600E297DF0A0&amp;fname=1021_fd8a5eedc8fbc2be547e47ef83f987fc6981dead.48.m4a&amp;fromtag=1007&amp;sdtfrom=v1007"></audio>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://zzjzz9266a.github.io/2016/12/25/基于ObjectMapper的本地缓存/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zzjzz9266a">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DontKnowWhy">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/12/25/基于ObjectMapper的本地缓存/" itemprop="url">
+                  基于ObjectMapper的本地缓存
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-12-25T22:13:13+08:00">
+                2016-12-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <script src="/assets/js/DPlayer.min.js"> </script><script src="/assets/js/APlayer.min.js"> </script><h2 id="引"><a href="#引" class="headerlink" title="引"></a>引</h2><p>公司项目在之前是没有将首页数据做缓存的，用户体验不太好，所以现在需要将首页数据存到本地。</p>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>首先考虑用NSKeyedArchiver，但是用这货需要遵守NSCoding协议，将模型里的每个属性确定类型。但我们项目用ObjectMapper解析json，就已经把模型中的每个属性都设置过映射关系了，他喵的难道还要我要再写一遍？<br>后来仔细想想，json文件无非就是array和dictionary，只不过其本身的类型由根节点来确定，而且NSArray和NSDictionary是有writeToFile的方法的，那么我把模型转为对应的NSArray和NSDictionary类型就好了啊，bingo~~</p>
+<p>撸了半天，代码如下：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> Foundation</div><div class="line"><span class="keyword">import</span> ObjectMapper</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">CacheManager</span> </span>&#123;</div><div class="line">    <span class="comment">//路径</span></div><div class="line">    <span class="keyword">static</span> <span class="function"><span class="keyword">func</span> <span class="title">filePath</span><span class="params">(<span class="number">_</span> fileName:String)</span></span> -&gt; <span class="type">URL</span>?&#123;</div><div class="line">        <span class="keyword">let</span> manager = <span class="type">FileManager</span>.<span class="keyword">default</span></div><div class="line">        <span class="comment">//往哪存，自己改</span></div><div class="line">        <span class="keyword">guard</span> <span class="keyword">let</span> cachePath = manager.urls(<span class="keyword">for</span>: .cachesDirectory, <span class="keyword">in</span>: .userDomainMask).first <span class="keyword">else</span> &#123; <span class="keyword">return</span> <span class="literal">nil</span> &#125;</div><div class="line">        <span class="keyword">let</span> directory = cachePath.appendingPathComponent(<span class="string">"buybuyARTCache"</span>)</div><div class="line">        </div><div class="line">        <span class="keyword">if</span> !manager.fileExists(atPath: directory.path)&#123;</div><div class="line">            <span class="keyword">do</span>&#123;</div><div class="line">                <span class="keyword">try</span> manager.createDirectory(atPath: directory.path, withIntermediateDirectories: <span class="literal">true</span>, attributes: <span class="literal">nil</span>)</div><div class="line">            &#125;<span class="keyword">catch</span>&#123;</div><div class="line">                <span class="keyword">return</span> <span class="literal">nil</span></div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">let</span> path = directory.appendingPathComponent(fileName)</div><div class="line">        <span class="keyword">return</span> path</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    @discardableResult</div><div class="line">    <span class="keyword">static</span> <span class="function"><span class="keyword">func</span> <span class="title">setCache</span><span class="params">(object:BaseMappable, <span class="keyword">for</span> fileName: String)</span></span> -&gt; <span class="type">Bool</span>&#123;</div><div class="line">        <span class="keyword">return</span> setCache(json: object.toJSON(), <span class="keyword">for</span>: fileName)</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="comment">/*使用时需显示声明类型,let a:Art = CacheManager.cache(for: "cacheName")</span></div><div class="line">     参照http://stackoverflow.com/questions/27965439/cannot-explicitly-specialize-a-generic-function */</div><div class="line">    <span class="keyword">static</span> <span class="function"><span class="keyword">func</span> <span class="title">cache</span>&lt;T: BaseMappable&gt;<span class="params">(<span class="keyword">for</span> fileName: String)</span></span> -&gt; <span class="type">T</span>?&#123;</div><div class="line">        <span class="keyword">guard</span> <span class="keyword">let</span> jsonDict = cacheJson(<span class="keyword">for</span>: fileName) <span class="keyword">as</span>? [<span class="type">String</span>: <span class="type">Any</span>] <span class="keyword">else</span> &#123;<span class="keyword">return</span> <span class="literal">nil</span>&#125;</div><div class="line">        <span class="keyword">return</span> <span class="type">Mapper</span>&lt;<span class="type">T</span>&gt;().<span class="built_in">map</span>(<span class="type">JSON</span>: jsonDict)</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="comment">//存数组</span></div><div class="line">    @discardableResult</div><div class="line">    <span class="keyword">static</span> <span class="function"><span class="keyword">func</span> <span class="title">setCache</span><span class="params">(array: [BaseMappable], <span class="keyword">for</span> fileName: String)</span></span> -&gt; <span class="type">Bool</span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">self</span>.setCache(json: array.<span class="built_in">map</span>(&#123;$<span class="number">0</span>.toJSON()&#125;), <span class="keyword">for</span>: fileName)</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="comment">//取数组</span></div><div class="line">    <span class="keyword">static</span> <span class="function"><span class="keyword">func</span> <span class="title">cacheArray</span>&lt;T: BaseMappable&gt;<span class="params">(<span class="keyword">for</span> fileName: String)</span></span> -&gt; <span class="type">Array</span>&lt;<span class="type">T</span>&gt;?&#123;</div><div class="line">        <span class="keyword">guard</span> <span class="keyword">let</span> jsonArray = cacheJson(<span class="keyword">for</span>: fileName) <span class="keyword">as</span>? [[<span class="type">String</span>: <span class="type">Any</span>]] <span class="keyword">else</span> &#123;<span class="keyword">return</span> <span class="literal">nil</span>&#125;</div><div class="line">        <span class="keyword">return</span> <span class="type">Mapper</span>&lt;<span class="type">T</span>&gt;().mapArray(<span class="type">JSONArray</span>: jsonArray)</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="comment">//存json</span></div><div class="line">    @discardableResult</div><div class="line">    <span class="keyword">static</span> <span class="function"><span class="keyword">func</span> <span class="title">setCache</span><span class="params">(json: Any, <span class="keyword">for</span> fileName: String)</span></span> -&gt; <span class="type">Bool</span>&#123;</div><div class="line">        <span class="keyword">guard</span> <span class="keyword">let</span> filePath = filePath(fileName) <span class="keyword">else</span> &#123;<span class="keyword">return</span> <span class="literal">false</span>&#125;</div><div class="line">        <span class="keyword">if</span> <span class="keyword">let</span> array = json <span class="keyword">as</span>? [<span class="type">Any</span>]&#123;</div><div class="line">            <span class="keyword">let</span> jsonArray = <span class="type">NSArray</span>(array: array)</div><div class="line">            <span class="keyword">return</span> jsonArray.write(to: filePath, atomically: <span class="literal">true</span>)</div><div class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span> <span class="keyword">let</span> dict = json <span class="keyword">as</span>? [<span class="type">String</span>: <span class="type">Any</span>]&#123;</div><div class="line">            <span class="keyword">let</span> jsonDict = <span class="type">NSDictionary</span>(dictionary: dict)</div><div class="line">            <span class="keyword">return</span> jsonDict.write(to: filePath, atomically: <span class="literal">true</span>)</div><div class="line">        &#125;<span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">return</span> <span class="literal">false</span></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    <span class="comment">//取json</span></div><div class="line">    <span class="keyword">static</span> <span class="function"><span class="keyword">func</span> <span class="title">cacheJson</span><span class="params">(<span class="keyword">for</span> fileName: String)</span></span> -&gt; <span class="type">Any</span>?&#123;</div><div class="line">        <span class="keyword">guard</span> <span class="keyword">let</span> filePath = filePath(fileName) <span class="keyword">else</span> &#123;<span class="keyword">return</span> <span class="literal">nil</span>&#125;</div><div class="line">        <span class="keyword">if</span> <span class="keyword">let</span> jsonArray = <span class="type">NSArray</span>(contentsOf: filePath)&#123;</div><div class="line">            <span class="keyword">return</span> jsonArray</div><div class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span> <span class="keyword">let</span> jsonDict = <span class="type">NSDictionary</span>(contentsOf: filePath)&#123;</div><div class="line">            <span class="keyword">return</span> jsonDict</div><div class="line">        &#125;<span class="keyword">else</span>&#123;</div><div class="line">            <span class="keyword">return</span> <span class="literal">nil</span></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>原则上来说，CacheManager只支持遵循了BaseMappable协议的对象，因为模型都是用ObjectMapper解析出来的。但是后来考虑到这样似乎限制太大，所以又加了对json数据的缓存。</p>
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>其中碰到一个问题，就是这个函数是用来从沙盒里取数据的，使用的时候需要确定数据的类型</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">static</span> <span class="function"><span class="keyword">func</span> <span class="title">cache</span>&lt;T: BaseMappable&gt;<span class="params">(<span class="keyword">for</span> fileName: String)</span></span> -&gt; <span class="type">T</span>?&#123; </div><div class="line">    <span class="keyword">guard</span> <span class="keyword">let</span> jsonDict = cacheJson(<span class="keyword">for</span>: fileName) <span class="keyword">as</span>? [<span class="type">String</span>: <span class="type">Any</span>] <span class="keyword">else</span>  &#123;<span class="keyword">return</span> <span class="literal">nil</span>&#125; </div><div class="line">    <span class="keyword">return</span> <span class="type">Mapper</span>&lt;<span class="type">T</span>&gt;().<span class="built_in">map</span>(<span class="type">JSON</span>: jsonDict) </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>但是当调用的时候，编译器老是编译不过，提示什么Cannot explicitly specialize a generic function。后来上so查了以后才知道，当使用泛型函数时，如果返回值是关联类型的话，需要显示声明</p>
+<pre><code>let a:Art = CacheManager.cache(for: &quot;cacheName&quot;)
+</code></pre><p>学艺不精~~(⊙﹏⊙)b，惭愧惭愧</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://zzjzz9266a.github.io/2016/12/25/二维码从生成到验证/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zzjzz9266a">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DontKnowWhy">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/12/25/二维码从生成到验证/" itemprop="url">
+                  二维码从生成到验证
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-12-25T18:31:11+08:00">
+                2016-12-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <script src="/assets/js/DPlayer.min.js"> </script><script src="/assets/js/APlayer.min.js"> </script><h2 id="缘由"><a href="#缘由" class="headerlink" title="缘由"></a>缘由</h2><p>最近公司进行推广要制作二维码，要求是带logo的，找了一些在线的批量二维码生成工具，都不太符合要求，基本都是为了保证识别率把logo做的很小，看不到log 的细节。<br>我们公司后台是用django做的，正好最近在看一些python的东西，就自己写了几个二维码相关的小脚本，纯当练手了~~</p>
+<h2 id="生成二维码"><a href="#生成二维码" class="headerlink" title="生成二维码"></a>生成二维码</h2><p>python的一大优势就是有茫茫多的第三方库，几乎可以满足所有的需求。在图像处理方面，PIL是首选，本脚本用PIL主要是进行图片缩放，此外，还用了xlrd来解析excel，qrcode来生成二维码<br>话不多讲，上代码(python2.7):</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/python</span></div><div class="line"><span class="comment">#coding: utf-8</span></div><div class="line"><span class="keyword">import</span> xlrd</div><div class="line"><span class="keyword">import</span> qrcode</div><div class="line"><span class="keyword">import</span> os</div><div class="line"><span class="keyword">import</span> sys</div><div class="line"><span class="keyword">import</span> PIL</div><div class="line"><span class="comment">#file_path = raw_input('请将excel文件拖入终端：')</span></div><div class="line"><span class="keyword">print</span> os.path.dirname(os.path.abspath(__file__))</div><div class="line">file_path = <span class="string">'./qrcode_list.xlsx'</span></div><div class="line"><span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(file_path):</div><div class="line">    <span class="keyword">print</span> <span class="string">'请将excel文件命名为"qrcode_list.xlsx"并放入该脚本同级目录！！！'</span></div><div class="line">    exit()</div><div class="line">path = os.path.split(file_path)[<span class="number">0</span>]</div><div class="line"></div><div class="line"><span class="comment">#folder_path = os.path.join(path, 'QRCode_images')</span></div><div class="line">folder_path = <span class="string">'./QRCode_images'</span></div><div class="line"><span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(folder_path):</div><div class="line">    os.makedirs(folder_path)</div><div class="line"> </div><div class="line">table = xlrd.open_workbook(file_path).sheet_by_index(<span class="number">0</span>)</div><div class="line">work_ids = table.col_values(<span class="number">0</span>)</div><div class="line">work_names = table.col_values(<span class="number">1</span>)</div><div class="line"><span class="keyword">for</span> index,work_id <span class="keyword">in</span> enumerate(work_ids):</div><div class="line">    share_link = <span class="string">'https://prod.artally.com.cn/artally/work/detail/share/%d/'</span> % int(work_id)</div><div class="line">    qr=qrcode.QRCode(</div><div class="line">    version=<span class="number">2</span>,</div><div class="line">    error_correction=qrcode.constants.ERROR_CORRECT_Q,</div><div class="line">    box_size=<span class="number">10</span>,</div><div class="line">    border=<span class="number">1</span></div><div class="line"> )</div><div class="line"> qr.add_data(share_link)</div><div class="line"> image = qr.make_image()</div><div class="line"> image = image.resize((<span class="number">5000</span>,<span class="number">5000</span>))</div><div class="line"> image_name = <span class="string">'%s/%s.png'</span> % (folder_path,work_names[index])</div><div class="line"> image.save(image_name)</div><div class="line"> <span class="keyword">print</span> <span class="string">'生成二维码：'</span> + image_name.encode(<span class="string">'utf-8'</span>)</div></pre></td></tr></table></figure>
+<p><img src="http://upload-images.jianshu.io/upload_images/1324647-544ba281f0496f63.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="excel数据格式.png"></p>
+<p>excel文件跟脚本文件需放到同意目录下，本来想做成将excel文件拖入终端的，但是由于一些不可描述的路径问题作罢，学艺未精啊~~</p>
+<h2 id="添加logo"><a href="#添加logo" class="headerlink" title="添加logo"></a>添加logo</h2><p>实质上就是把两张图片叠在一起，用了PIL库<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/python</span></div><div class="line"><span class="comment">#coding=utf8</span></div><div class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</div><div class="line"><span class="keyword">import</span> os</div><div class="line"></div><div class="line">images = os.listdir(<span class="string">'./'</span>)</div><div class="line"><span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(<span class="string">'./new'</span>):</div><div class="line">    os.mkdir(<span class="string">"./new"</span>)</div><div class="line"></div><div class="line"><span class="keyword">for</span> image <span class="keyword">in</span> images:</div><div class="line">    print(image)</div><div class="line">    <span class="keyword">if</span> (<span class="string">'.png'</span> <span class="keyword">not</span> <span class="keyword">in</span> image) <span class="keyword">or</span> (<span class="string">'inner_image'</span> <span class="keyword">in</span> image):</div><div class="line">        <span class="keyword">continue</span></div><div class="line">    base_image = Image.open(image)</div><div class="line">    inner_image = Image.open(<span class="string">'./inner_image.png'</span>)</div><div class="line">    originX = (base_image.width-inner_image.width)/<span class="number">2</span></div><div class="line">    originY = (base_image.height-inner_image.height)/<span class="number">2</span></div><div class="line">    location = (originX,originY)</div><div class="line">    base_image.paste(inner_image, location, inner_image) <span class="comment">#透明像素问题：http://stackoverflow.com/questions/39732548/pillow-handles-png-files-incorrectly</span></div><div class="line">    base_image.save(<span class="string">'./new/'</span>+image)</div></pre></td></tr></table></figure></p>
+<p>二维码图片、logo图片、脚本需在同一目录</p>
+<h1 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h1><p>说起来有点尴尬，python里验证二维码的库找来找去就只有zbar，但zbar只支持到python2.6，我嫌折腾起来实在是麻烦，就用swift写了。万幸xcode可以打包成unix可执行文件，能够直接运行。但是swift貌似没有类似python中raw_input之类的函数，就只能暂时把路径写死。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> Foundation</div><div class="line"><span class="keyword">import</span> CoreImage</div><div class="line"><span class="keyword">let</span> options = [<span class="type">CIDetectorAccuracy</span>: <span class="type">CIDetectorAccuracyHigh</span>]</div><div class="line"><span class="keyword">let</span> detector = <span class="type">CIDetector</span>(ofType: <span class="type">CIDetectorTypeQRCode</span>, context: <span class="literal">nil</span>, options: options)!</div><div class="line"><span class="comment">//此处可以自行修改路径</span></div><div class="line"><span class="keyword">if</span> <span class="keyword">let</span> path = <span class="type">FileManager</span>.<span class="keyword">default</span>.urls(<span class="keyword">for</span>: .desktopDirectory, <span class="keyword">in</span>: .userDomainMask).first?.appendingPathComponent(<span class="string">"QRCode"</span>)&#123;</div><div class="line">    <span class="keyword">do</span>&#123;</div><div class="line">        <span class="comment">//确定二维码图片格式</span></div><div class="line">        <span class="keyword">let</span> files = <span class="keyword">try</span> <span class="type">FileManager</span>.<span class="keyword">default</span>.contentsOfDirectory(atPath: path.path).<span class="built_in">filter</span>(&#123;$<span class="number">0</span>.<span class="built_in">contains</span>(<span class="string">".png"</span>)&#125;)</div><div class="line">        <span class="keyword">var</span> <span class="built_in">count</span> = <span class="number">0</span></div><div class="line">        files.forEach(&#123; (imageName) <span class="keyword">in</span></div><div class="line">            <span class="keyword">let</span> url = path.appendingPathComponent(imageName)</div><div class="line">            <span class="keyword">let</span> image = <span class="type">CIImage</span>(contentsOf: url)</div><div class="line">            <span class="keyword">let</span> features = detector.features(<span class="keyword">in</span>: image!)</div><div class="line">            <span class="keyword">if</span> features.<span class="built_in">count</span> &gt; <span class="number">0</span>&#123;</div><div class="line">                <span class="keyword">for</span> feature <span class="keyword">in</span> features&#123;</div><div class="line">                    <span class="keyword">if</span> <span class="keyword">let</span> message = (feature <span class="keyword">as</span>? <span class="type">CIQRCodeFeature</span>)?.messageString&#123;</div><div class="line">                        <span class="built_in">count</span> += <span class="number">1</span></div><div class="line">                    &#125;<span class="keyword">else</span>&#123;</div><div class="line">                        <span class="built_in">print</span>(<span class="string">"未通过的图片是：<span class="subst">\(imageName)</span>"</span>)</div><div class="line">                    &#125;</div><div class="line">                &#125;</div><div class="line">            &#125;<span class="keyword">else</span>&#123;</div><div class="line">                <span class="built_in">print</span>(<span class="string">"未通过的图片：<span class="subst">\(imageName)</span>"</span>)</div><div class="line">            &#125;</div><div class="line">        &#125;)</div><div class="line">        <span class="built_in">print</span>(<span class="string">"通过验证：<span class="subst">\(<span class="built_in">count</span>)</span>，未通过验证：<span class="subst">\(files.<span class="built_in">count</span> - <span class="built_in">count</span>)</span>"</span>)</div><div class="line">    &#125;<span class="keyword">catch</span>&#123;</div><div class="line">        <span class="built_in">print</span>(<span class="string">"未找到文件夹，请将图片文件夹置于桌面上，并命名为“QRCode”"</span>)</div><div class="line">    &#125;</div><div class="line">&#125;<span class="keyword">else</span>&#123;</div><div class="line">    <span class="built_in">print</span>(<span class="string">"未找到文件夹，请将图片文件夹置于桌面上，并命名为“QRCode”"</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>新建项目是选择macOS下的CommandLineTool，然后直接运行即可，也可以打包成unix可执行文件</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1324647-ae35e3c8a14b9eb8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Paste_Image.png"><br><img src="http://upload-images.jianshu.io/upload_images/1324647-a686784c4f88eadf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Paste_Image.png"><br><img src="http://upload-images.jianshu.io/upload_images/1324647-d780800acb17cf20.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="运行结果.png"></p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://zzjzz9266a.github.io/2016/11/24/hello-world/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zzjzz9266a">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DontKnowWhy">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/11/24/hello-world/" itemprop="url">
+                  Hello World
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-11-24T16:24:54+08:00">
+                2016-11-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <script src="/assets/js/DPlayer.min.js"> </script><script src="/assets/js/APlayer.min.js"> </script><p>我是一名iOS开发者，这是我的第一篇博客，以后会在上面放一些文章用作笔记，也会发一些自己的看法和对生活的感悟，还会放一些自己录得歌，欢迎来访~~~</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+  </section>
+
+  
+
+
+          </div>
+          
+
+
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="zzjzz9266a" />
+          <p class="site-author-name" itemprop="name">zzjzz9266a</p>
+           
+              <p class="site-description motion-element" itemprop="description">卑鄙是卑鄙者的通行证，高尚是高尚者的墓志铭</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zzjzz9266a</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
+
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

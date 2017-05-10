@@ -210,6 +210,16 @@
         </li>
       
         
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
@@ -329,7 +339,7 @@
       
 
       
-        <script src="/assets/js/DPlayer.min.js"> </script><script src="/assets/js/APlayer.min.js"> </script><h2 id="缘由"><a href="#缘由" class="headerlink" title="缘由"></a>缘由</h2><p>最近公司进行推广要制作二维码，要求是带logo的，找了一些在线的批量二维码生成工具，都不太符合要求，基本都是为了保证识别率把logo做的很小，看不到log 的细节。<br>我们公司后台是用django做的，正好最近在看一些python的东西，就自己写了几个二维码相关的小脚本，纯当练手了~~</p>
+        <script src="/assets/js/APlayer.min.js"> </script><script src="/assets/js/DPlayer.min.js"> </script><h2 id="缘由"><a href="#缘由" class="headerlink" title="缘由"></a>缘由</h2><p>最近公司进行推广要制作二维码，要求是带logo的，找了一些在线的批量二维码生成工具，都不太符合要求，基本都是为了保证识别率把logo做的很小，看不到log 的细节。<br>我们公司后台是用django做的，正好最近在看一些python的东西，就自己写了几个二维码相关的小脚本，纯当练手了~~</p>
 <a id="more"></a>
 <h2 id="生成二维码"><a href="#生成二维码" class="headerlink" title="生成二维码"></a>生成二维码</h2><p>python的一大优势就是有茫茫多的第三方库，几乎可以满足所有的需求。在图像处理方面，PIL是首选，本脚本用PIL主要是进行图片缩放，此外，还用了xlrd来解析excel，qrcode来生成二维码<br>话不多讲，上代码(python2.7):</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/python</span></div><div class="line"><span class="comment">#coding: utf-8</span></div><div class="line"><span class="keyword">import</span> xlrd</div><div class="line"><span class="keyword">import</span> qrcode</div><div class="line"><span class="keyword">import</span> os</div><div class="line"><span class="keyword">import</span> sys</div><div class="line"><span class="keyword">import</span> PIL</div><div class="line"><span class="comment">#file_path = raw_input('请将excel文件拖入终端：')</span></div><div class="line"><span class="keyword">print</span> os.path.dirname(os.path.abspath(__file__))</div><div class="line">file_path = <span class="string">'./qrcode_list.xlsx'</span></div><div class="line"><span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(file_path):</div><div class="line">    <span class="keyword">print</span> <span class="string">'请将excel文件命名为"qrcode_list.xlsx"并放入该脚本同级目录！！！'</span></div><div class="line">    exit()</div><div class="line">path = os.path.split(file_path)[<span class="number">0</span>]</div><div class="line"></div><div class="line"><span class="comment">#folder_path = os.path.join(path, 'QRCode_images')</span></div><div class="line">folder_path = <span class="string">'./QRCode_images'</span></div><div class="line"><span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(folder_path):</div><div class="line">    os.makedirs(folder_path)</div><div class="line"> </div><div class="line">table = xlrd.open_workbook(file_path).sheet_by_index(<span class="number">0</span>)</div><div class="line">work_ids = table.col_values(<span class="number">0</span>)</div><div class="line">work_names = table.col_values(<span class="number">1</span>)</div><div class="line"><span class="keyword">for</span> index,work_id <span class="keyword">in</span> enumerate(work_ids):</div><div class="line">    share_link = <span class="string">'https://prod.artally.com.cn/artally/work/detail/share/%d/'</span> % int(work_id)</div><div class="line">    qr=qrcode.QRCode(</div><div class="line">    version=<span class="number">2</span>,</div><div class="line">    error_correction=qrcode.constants.ERROR_CORRECT_Q,</div><div class="line">    box_size=<span class="number">10</span>,</div><div class="line">    border=<span class="number">1</span></div><div class="line"> )</div><div class="line"> qr.add_data(share_link)</div><div class="line"> image = qr.make_image()</div><div class="line"> image = image.resize((<span class="number">5000</span>,<span class="number">5000</span>))</div><div class="line"> image_name = <span class="string">'%s/%s.png'</span> % (folder_path,work_names[index])</div><div class="line"> image.save(image_name)</div><div class="line"> <span class="keyword">print</span> <span class="string">'生成二维码：'</span> + image_name.encode(<span class="string">'utf-8'</span>)</div></pre></td></tr></table></figure>
@@ -467,7 +477,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -479,10 +489,10 @@
             
             
             <div class="site-state-item site-state-tags">
-              
-                <span class="site-state-item-count">9</span>
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">标签</span>
-              
+              </a>
             </div>
           
 
@@ -557,7 +567,7 @@
       <div class="footer-inner">
         <div class="copyright" >
   
-  &copy; 
+  &copy;  2016 - 
   <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>

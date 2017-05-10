@@ -74,7 +74,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="iOS,UITableView,跳转,延迟," />
+  <meta name="keywords" content="iOS,UITableView,延迟," />
 
 
 
@@ -91,14 +91,14 @@
 
 
 <meta name="description" content="在最近的项目中遇到一个很让人费解的问题，就是在StoryBoard中点击tableViewCell跳转另一个controller时，如果使用segue连接，present方式跳转，会有很大概率出现延迟几秒钟的情况，甚至压根儿就不跳转。">
-<meta name="keywords" content="iOS,UITableView,跳转,延迟">
+<meta name="keywords" content="iOS,UITableView,延迟">
 <meta property="og:type" content="article">
 <meta property="og:title" content="UITableViewCell点击跳转延迟">
 <meta property="og:url" content="http://zzjzz9266a.github.io/2017/05/03/UITableViewCell点击跳转延迟/index.html">
 <meta property="og:site_name" content="二向箔">
 <meta property="og:description" content="在最近的项目中遇到一个很让人费解的问题，就是在StoryBoard中点击tableViewCell跳转另一个controller时，如果使用segue连接，present方式跳转，会有很大概率出现延迟几秒钟的情况，甚至压根儿就不跳转。">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1324647-78877bfbce0e7e29.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2017-05-05T08:00:51.000Z">
+<meta property="og:updated_time" content="2017-05-10T06:55:21.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="UITableViewCell点击跳转延迟">
 <meta name="twitter:description" content="在最近的项目中遇到一个很让人费解的问题，就是在StoryBoard中点击tableViewCell跳转另一个controller时，如果使用segue连接，present方式跳转，会有很大概率出现延迟几秒钟的情况，甚至压根儿就不跳转。">
@@ -203,6 +203,16 @@
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
           </a>
         </li>
       
@@ -326,7 +336,7 @@
       
 
       
-        <script src="/assets/js/DPlayer.min.js"> </script><script src="/assets/js/APlayer.min.js"> </script><p>在最近的项目中遇到一个很让人费解的问题，就是在<code>StoryBoard</code>中点击<a href="https://developer.apple.com/reference/uikit/uitableviewcell" target="_blank" rel="external">tableViewCell</a>跳转另一个controller时，如果使用<a href="https://developer.apple.com/reference/uikit/uistoryboardsegue" target="_blank" rel="external">segue</a>连接，<a href="https://developer.apple.com/reference/uikit/uiviewcontroller/1621380-present" target="_blank" rel="external">present</a>方式跳转，会有很大概率出现延迟几秒钟的情况，甚至压根儿就不跳转。<br><a id="more"></a></p>
+        <script src="/assets/js/APlayer.min.js"> </script><script src="/assets/js/DPlayer.min.js"> </script><p>在最近的项目中遇到一个很让人费解的问题，就是在<code>StoryBoard</code>中点击<a href="https://developer.apple.com/reference/uikit/uitableviewcell" target="_blank" rel="external">tableViewCell</a>跳转另一个controller时，如果使用<a href="https://developer.apple.com/reference/uikit/uistoryboardsegue" target="_blank" rel="external">segue</a>连接，<a href="https://developer.apple.com/reference/uikit/uiviewcontroller/1621380-present" target="_blank" rel="external">present</a>方式跳转，会有很大概率出现延迟几秒钟的情况，甚至压根儿就不跳转。<br><a id="more"></a></p>
 <h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>这个问题困扰了我很久，最后是在苹果的<a href="https://forums.developer.apple.com/" target="_blank" rel="external">开发者社区</a>找到了答案：<a href="https://forums.developer.apple.com/thread/5861" target="_blank" rel="external">https://forums.developer.apple.com/thread/5861</a></p>
 <p><img src="http://upload-images.jianshu.io/upload_images/1324647-78877bfbce0e7e29.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
 <h3 id="大意就是："><a href="#大意就是：" class="headerlink" title="大意就是："></a>大意就是：</h3><p>这是个iOS 8 的bug（只不过延续到了iOS 10，摊手~~），你能通过以下两个办法解决：</p>
@@ -373,8 +383,6 @@
           
             <a href="/tags/UITableView/" rel="tag"># UITableView</a>
           
-            <a href="/tags/跳转/" rel="tag"># 跳转</a>
-          
             <a href="/tags/延迟/" rel="tag"># 延迟</a>
           
         </div>
@@ -387,6 +395,10 @@
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/10/自动打包上传脚本/" rel="next" title="自动打包上传脚本">
+                <i class="fa fa-chevron-left"></i> 自动打包上传脚本
+              </a>
             
           </div>
 
@@ -468,7 +480,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -480,10 +492,10 @@
             
             
             <div class="site-state-item site-state-tags">
-              
-                <span class="site-state-item-count">9</span>
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">标签</span>
-              
+              </a>
             </div>
           
 
@@ -558,7 +570,7 @@
       <div class="footer-inner">
         <div class="copyright" >
   
-  &copy; 
+  &copy;  2016 - 
   <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>

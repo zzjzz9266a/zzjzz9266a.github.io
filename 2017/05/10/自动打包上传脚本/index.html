@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next pisces use-motion" lang="zh-Hans">
+<html class="theme-next pisces use-motion" lang="en">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -98,7 +98,7 @@
 <meta property="og:site_name" content="二向箔">
 <meta property="og:description" content="集成iOS项目打包、上传分发平台，发送邮件等功能，让你彻底脱离一遍又一遍的Archive、下一步、确定操作，解放你的双手，成就你的梦想~~地址：https://github.com/zzjzz9266a/IpaUploader">
 <meta property="og:image" content="http://zzjzz9266a.github.io/邮件截图.png">
-<meta property="og:updated_time" content="2017-05-10T06:58:38.000Z">
+<meta property="og:updated_time" content="2017-05-12T09:58:45.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="自动打包上传脚本">
 <meta name="twitter:description" content="集成iOS项目打包、上传分发平台，发送邮件等功能，让你彻底脱离一遍又一遍的Archive、下一步、确定操作，解放你的双手，成就你的梦想~~地址：https://github.com/zzjzz9266a/IpaUploader">
@@ -116,7 +116,7 @@
     motion: true,
     duoshuo: {
       userId: '0',
-      author: '博主'
+      author: 'Author'
     },
     algolia: {
       applicationID: '',
@@ -139,7 +139,7 @@
   <title>自动打包上传脚本 | 二向箔</title>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
 
   
 
@@ -202,7 +202,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            首页
+            Home
           </a>
         </li>
       
@@ -212,7 +212,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
             
-            关于
+            About
           </a>
         </li>
       
@@ -222,7 +222,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            归档
+            Archives
           </a>
         </li>
       
@@ -232,7 +232,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
-            标签
+            Tags
           </a>
         </li>
       
@@ -299,9 +299,9 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">发表于</span>
+                <span class="post-meta-item-text">Posted on</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-10T12:37:26+08:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-10T12:37:26+08:00">
                 2017-05-10
               </time>
             
@@ -315,9 +315,31 @@
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/05/10/自动打包上传脚本/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/05/10/自动打包上传脚本/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
+          
+             <span id="/2017/05/10/自动打包上传脚本/" class="leancloud_visitors" data-flag-title="自动打包上传脚本">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">Visitors </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
           
 
           
@@ -336,7 +358,7 @@
       
 
       
-        <script src="/assets/js/APlayer.min.js"> </script><script src="/assets/js/DPlayer.min.js"> </script><p>集成iOS项目打包、上传分发平台，发送邮件等功能，让你彻底脱离一遍又一遍的Archive、下一步、确定操作，解放你的双手，成就你的梦想~~<br>地址：<a href="https://github.com/zzjzz9266a/IpaUploader" target="_blank" rel="external">https://github.com/zzjzz9266a/IpaUploader</a></p>
+        <script src="/assets/js/DPlayer.min.js"> </script><script src="/assets/js/APlayer.min.js"> </script><p>集成iOS项目打包、上传分发平台，发送邮件等功能，让你彻底脱离一遍又一遍的Archive、下一步、确定操作，解放你的双手，成就你的梦想~~<br>地址：<a href="https://github.com/zzjzz9266a/IpaUploader" target="_blank" rel="external">https://github.com/zzjzz9266a/IpaUploader</a></p>
 <a id="more"></a>
 <h3 id="setp1：克隆项目"><a href="#setp1：克隆项目" class="headerlink" title="setp1：克隆项目"></a>setp1：克隆项目</h3><p>将你要打包的项目clone一份，放到跟uploader.py同一级目录下即可</p>
 <h3 id="step2：-配置"><a href="#step2：-配置" class="headerlink" title="step2：  配置"></a>step2：  配置</h3><p>主要就是两个文件，uploader.py和config.json，还有一个export文件，那是xcode输出ipa的配置文件。<br>你所有需要配置的内容都可以在config.json里找到，填上你自己的配置：<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  "BaseConfig": &#123;</div><div class="line">    "Project_Name":"项目名",   #项目名</div><div class="line">    "Directory_Name":"目录", #打包项目的目录</div><div class="line">    "Configuration": "Debug",   #不解释了</div><div class="line">    "Email_From": "mayun@taobao.com", #发件人</div><div class="line">    "Email_Password": "wojiushiyouqian", #密码</div><div class="line">    "Email_To": "mahuatent@qq.com", #收件人</div><div class="line">    "Email_Smtp": "smtp.mxhichina.com"  #发件服务器</div><div class="line">  &#125;,</div><div class="line">  "MessageConfig": &#123;  #短信配置</div><div class="line">    "AppKey": "123456789",   </div><div class="line">    "AppSecret": "123456789",</div><div class="line">    "Mobiles": ["123456789"],</div><div class="line">    "TemplateID" : "1278"</div><div class="line">  &#125;,</div><div class="line">  "Fir_Token": "123456789"   #内测分发平台token</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
@@ -434,6 +456,13 @@
           
   <div class="comments" id="comments">
     
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
   </div>
 
 
@@ -457,10 +486,10 @@
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
+            Table of Contents
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
+            Overview
           </li>
         </ul>
       
@@ -481,7 +510,7 @@
             <div class="site-state-item site-state-posts">
               <a href="/archives">
                 <span class="site-state-item-count">6</span>
-                <span class="site-state-item-name">日志</span>
+                <span class="site-state-item-name">posts</span>
               </a>
             </div>
           
@@ -494,7 +523,7 @@
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
                 <span class="site-state-item-count">11</span>
-                <span class="site-state-item-name">标签</span>
+                <span class="site-state-item-name">tags</span>
               </a>
             </div>
           
@@ -580,11 +609,11 @@
 
 
 <div class="powered-by">
-  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
 </div>
 
 <div class="theme-info">
-  主题 -
+  Theme -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
     NexT.Pisces
   </a>
@@ -691,6 +720,26 @@
 
   
 
+    
+      <script id="dsq-count-scr" src="https://zzjzz9266a-github-io.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://zzjzz9266a.github.io/2017/05/10/自动打包上传脚本/';
+          this.page.identifier = '2017/05/10/自动打包上传脚本/';
+          this.page.title = '自动打包上传脚本';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://zzjzz9266a-github-io.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
 
 
 
@@ -712,10 +761,6 @@
 
 
 
-  
-
-
-
 
 
 
@@ -726,6 +771,113 @@
 
 
   
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("ReL8KYj7W05Ex8JNXnFOR2H2-gzGzoHsz", "r41MfNRypAojzb7sYbetGv7z");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
 
   
 

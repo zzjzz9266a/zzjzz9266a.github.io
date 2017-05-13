@@ -2,10 +2,8 @@
 
 
 
-  
 
-
-<html class="theme-next pisces use-motion" lang="en">
+<html class="theme-next muse" lang="en">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -32,10 +30,6 @@
 
 
 
-
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -90,18 +84,18 @@
 
 
 
-<meta name="description" content="在最近的项目中遇到一个很让人费解的问题，就是在StoryBoard中点击tableViewCell跳转另一个controller时，如果使用segue连接，present方式跳转，会有很大概率出现延迟几秒钟的情况，甚至压根儿就不跳转。">
+<meta name="description" content="在最近的项目中遇到一个很让人费解的问题，就是在StoryBoard中点击tableViewCell跳转另一个controller时，如果使用segue连接，present方式跳转，会有很大概率出现延迟几秒钟的情况，甚至压根儿就不跳转。 解决方案这个问题困扰了我很久，最后是在苹果的开发者社区找到了答案：https://forums.developer.apple.com/thread/5861">
 <meta name="keywords" content="iOS,UITableView,延迟">
 <meta property="og:type" content="article">
 <meta property="og:title" content="UITableViewCell点击跳转延迟">
 <meta property="og:url" content="http://zzjzz9266a.github.io/2017/05/03/UITableViewCell点击跳转延迟/index.html">
 <meta property="og:site_name" content="二向箔">
-<meta property="og:description" content="在最近的项目中遇到一个很让人费解的问题，就是在StoryBoard中点击tableViewCell跳转另一个controller时，如果使用segue连接，present方式跳转，会有很大概率出现延迟几秒钟的情况，甚至压根儿就不跳转。">
+<meta property="og:description" content="在最近的项目中遇到一个很让人费解的问题，就是在StoryBoard中点击tableViewCell跳转另一个controller时，如果使用segue连接，present方式跳转，会有很大概率出现延迟几秒钟的情况，甚至压根儿就不跳转。 解决方案这个问题困扰了我很久，最后是在苹果的开发者社区找到了答案：https://forums.developer.apple.com/thread/5861">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1324647-78877bfbce0e7e29.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2017-05-10T06:55:21.000Z">
+<meta property="og:updated_time" content="2017-05-13T02:45:04.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="UITableViewCell点击跳转延迟">
-<meta name="twitter:description" content="在最近的项目中遇到一个很让人费解的问题，就是在StoryBoard中点击tableViewCell跳转另一个controller时，如果使用segue连接，present方式跳转，会有很大概率出现延迟几秒钟的情况，甚至压根儿就不跳转。">
+<meta name="twitter:description" content="在最近的项目中遇到一个很让人费解的问题，就是在StoryBoard中点击tableViewCell跳转另一个controller时，如果使用segue连接，present方式跳转，会有很大概率出现延迟几秒钟的情况，甚至压根儿就不跳转。 解决方案这个问题困扰了我很久，最后是在苹果的开发者社区找到了答案：https://forums.developer.apple.com/thread/5861">
 <meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/1324647-78877bfbce0e7e29.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 
 
@@ -110,10 +104,10 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Pisces',
+    scheme: 'Muse',
     sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
-    fancybox: true,
-    motion: true,
+    fancybox: false,
+    motion: false,
     duoshuo: {
       userId: '0',
       author: 'Author'
@@ -345,6 +339,25 @@
           
 
           
+            <div class="post-wordcount">
+              
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article</span>
+                
+                <span title="Words count in article">
+                  
+                </span>
+              
+
+              
+
+              
+            </div>
+          
 
           
 
@@ -358,9 +371,10 @@
       
 
       
-        <script src="/assets/js/DPlayer.min.js"> </script><script src="/assets/js/APlayer.min.js"> </script><p>在最近的项目中遇到一个很让人费解的问题，就是在<code>StoryBoard</code>中点击<a href="https://developer.apple.com/reference/uikit/uitableviewcell" target="_blank" rel="external">tableViewCell</a>跳转另一个controller时，如果使用<a href="https://developer.apple.com/reference/uikit/uistoryboardsegue" target="_blank" rel="external">segue</a>连接，<a href="https://developer.apple.com/reference/uikit/uiviewcontroller/1621380-present" target="_blank" rel="external">present</a>方式跳转，会有很大概率出现延迟几秒钟的情况，甚至压根儿就不跳转。<br><a id="more"></a></p>
+        <script src="/assets/js/DPlayer.min.js"> </script><script src="/assets/js/APlayer.min.js"> </script><p>在最近的项目中遇到一个很让人费解的问题，就是在<code>StoryBoard</code>中点击<a href="https://developer.apple.com/reference/uikit/uitableviewcell" target="_blank" rel="external"><code>tableViewCell</code></a>跳转另一个controller时，如果使用<a href="https://developer.apple.com/reference/uikit/uistoryboardsegue" target="_blank" rel="external">segue</a>连接，<a href="https://developer.apple.com/reference/uikit/uiviewcontroller/1621380-present" target="_blank" rel="external">present</a>方式跳转，会有很大概率出现延迟几秒钟的情况，甚至压根儿就不跳转。</p>
 <h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>这个问题困扰了我很久，最后是在苹果的<a href="https://forums.developer.apple.com/" target="_blank" rel="external">开发者社区</a>找到了答案：<a href="https://forums.developer.apple.com/thread/5861" target="_blank" rel="external">https://forums.developer.apple.com/thread/5861</a></p>
 <p><img src="http://upload-images.jianshu.io/upload_images/1324647-78877bfbce0e7e29.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"></p>
+<a id="more"></a>
 <h3 id="大意就是："><a href="#大意就是：" class="headerlink" title="大意就是："></a>大意就是：</h3><p>这是个iOS 8 的bug（只不过延续到了iOS 10，摊手~~），你能通过以下两个办法解决：</p>
 <ol>
 <li>容易的办法是不要把cell 的<code>selectionStyle</code> 设为<code>None</code>，但是这样界面会很糟糕；</li>
@@ -369,7 +383,7 @@
 </ol>
 <p>其实也就是到主线程里去触发。。</p>
 <h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><ol>
-<li>亲测有效，就是麻烦了一些，如果是静态的tableView，有很多cell需要跳转，类似用户设置这样的界面，就需要挨个儿在代码里设置对应的跳转逻辑。</li>
+<li>亲测有效，就是麻烦了一些，如果是静态的<code>tableView</code>，有很多<code>cell</code>需要跳转，类似用户设置这样的界面，就需要挨个儿在代码里设置对应的跳转逻辑。</li>
 <li>很奇怪的是这个bug只有在sb中controller被present的时候才会出现，用push的话就完全没问题。</li>
 </ol>
 
@@ -615,7 +629,7 @@
 <div class="theme-info">
   Theme -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Pisces
+    NexT.Muse
   </a>
 </div>
 
@@ -651,8 +665,6 @@
 
 
 
-  
-
 
 
 
@@ -679,9 +691,6 @@
   
   <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
 
   
 
@@ -694,13 +703,6 @@
 
   
   
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
-
-
 
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
@@ -880,6 +882,21 @@
 
 
   
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
 
   
 

@@ -2,10 +2,8 @@
 
 
 
-  
 
-
-<html class="theme-next pisces use-motion" lang="en">
+<html class="theme-next muse" lang="en">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -32,10 +30,6 @@
 
 
 
-
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -90,20 +84,20 @@
 
 
 
-<meta name="description" content="最近在项目中使用了UITableView的编辑模式来进行多选批量操作， 但是出现一个问题，就是用storyboard布局的话，cell里的内容默认是加到了contentView上的，这就导致了tableView变成编辑模式后，cell里的内容被压缩，造成一些显示上的问题。">
+<meta name="description" content="最近在项目中使用了UITableView的编辑模式来进行多选批量操作， 但是出现一个问题，就是用storyboard布局的话，cell里的内容默认是加到了contentView上的，这就导致了tableView变成编辑模式后，cell里的内容被压缩，造成一些显示上的问题。  解决方案重写UITableCell的willTransition(to state: UITableViewCellStat">
 <meta name="keywords" content="iOS,UITableView">
 <meta property="og:type" content="article">
 <meta property="og:title" content="编辑模式下的UITableViewCell偏移问题">
 <meta property="og:url" content="http://zzjzz9266a.github.io/2017/04/25/编辑模式下的UITableViewCell偏移问题/index.html">
 <meta property="og:site_name" content="二向箔">
-<meta property="og:description" content="最近在项目中使用了UITableView的编辑模式来进行多选批量操作， 但是出现一个问题，就是用storyboard布局的话，cell里的内容默认是加到了contentView上的，这就导致了tableView变成编辑模式后，cell里的内容被压缩，造成一些显示上的问题。">
+<meta property="og:description" content="最近在项目中使用了UITableView的编辑模式来进行多选批量操作， 但是出现一个问题，就是用storyboard布局的话，cell里的内容默认是加到了contentView上的，这就导致了tableView变成编辑模式后，cell里的内容被压缩，造成一些显示上的问题。  解决方案重写UITableCell的willTransition(to state: UITableViewCellStat">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1324647-fc4cb743aa86d462.gif?imageMogr2/auto-orient/strip">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1324647-a0939c0df3dcd7c0.gif?imageMogr2/auto-orient/strip">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1324647-514b2d733d848c6b.gif?imageMogr2/auto-orient/strip">
-<meta property="og:updated_time" content="2017-05-02T12:53:15.000Z">
+<meta property="og:updated_time" content="2017-05-13T02:44:35.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="编辑模式下的UITableViewCell偏移问题">
-<meta name="twitter:description" content="最近在项目中使用了UITableView的编辑模式来进行多选批量操作， 但是出现一个问题，就是用storyboard布局的话，cell里的内容默认是加到了contentView上的，这就导致了tableView变成编辑模式后，cell里的内容被压缩，造成一些显示上的问题。">
+<meta name="twitter:description" content="最近在项目中使用了UITableView的编辑模式来进行多选批量操作， 但是出现一个问题，就是用storyboard布局的话，cell里的内容默认是加到了contentView上的，这就导致了tableView变成编辑模式后，cell里的内容被压缩，造成一些显示上的问题。  解决方案重写UITableCell的willTransition(to state: UITableViewCellStat">
 <meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/1324647-fc4cb743aa86d462.gif?imageMogr2/auto-orient/strip">
 
 
@@ -112,10 +106,10 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Pisces',
+    scheme: 'Muse',
     sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
-    fancybox: true,
-    motion: true,
+    fancybox: false,
+    motion: false,
     duoshuo: {
       userId: '0',
       author: 'Author'
@@ -347,6 +341,25 @@
           
 
           
+            <div class="post-wordcount">
+              
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article</span>
+                
+                <span title="Words count in article">
+                  
+                </span>
+              
+
+              
+
+              
+            </div>
+          
 
           
 
@@ -360,13 +373,13 @@
       
 
       
-        <script src="/assets/js/DPlayer.min.js"> </script><script src="/assets/js/APlayer.min.js"> </script><p>最近在项目中使用了UITableView的编辑模式来进行多选批量操作， 但是出现一个问题，就是用storyboard布局的话，cell里的内容默认是加到了contentView上的，这就导致了tableView变成编辑模式后，cell里的内容被压缩，造成一些显示上的问题。</p>
-<a id="more"></a>
+        <script src="/assets/js/DPlayer.min.js"> </script><script src="/assets/js/APlayer.min.js"> </script><p>最近在项目中使用了<code>UITableView</code>的编辑模式来进行多选批量操作， 但是出现一个问题，就是用<code>storyboard</code>布局的话，<code>cell</code>里的内容默认是加到了<code>contentView</code>上的，这就导致了<code>tableView</code>变成编辑模式后，<code>cell</code>里的内容被压缩，造成一些显示上的问题。</p>
 <p><img src="http://upload-images.jianshu.io/upload_images/1324647-fc4cb743aa86d462.gif?imageMogr2/auto-orient/strip" alt="图中给contentView设置了背景色"></p>
-<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>重写UITableCell的<strong>willTransition(to state: UITableViewCellStateMask)</strong>方法<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@IBOutlet</span> <span class="keyword">weak</span> <span class="keyword">var</span> labelTrailing: <span class="type">NSLayoutConstraint</span>!   <span class="comment">//label右边距</span></div><div class="line"></div><div class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">willTransition</span><span class="params">(to state: UITableViewCellStateMask)</span></span> &#123;</div><div class="line">    <span class="keyword">super</span>.willTransition(to: state)</div><div class="line">    <span class="keyword">switch</span> state &#123;</div><div class="line">    <span class="keyword">case</span> <span class="type">UITableViewCellStateMask</span>.showingEditControlMask:   <span class="comment">//cell进入编辑模式</span></div><div class="line">        labelTrailing.constant = -<span class="number">30</span></div><div class="line">    <span class="keyword">case</span> []:    <span class="comment">//cell退出编辑模式</span></div><div class="line">        labelTrailing.constant = <span class="number">8</span></div><div class="line">    <span class="keyword">default</span>:</div><div class="line">        <span class="keyword">break</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>在进入编辑模式时，将label的右边距同步向右移，退出编辑模式时，再恢复原有布局</p>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>重写<code>UITableCell</code>的<code>willTransition(to state: UITableViewCellStateMask)</code>方法<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@IBOutlet</span> <span class="keyword">weak</span> <span class="keyword">var</span> labelTrailing: <span class="type">NSLayoutConstraint</span>!   <span class="comment">//label右边距</span></div><div class="line"></div><div class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">willTransition</span><span class="params">(to state: UITableViewCellStateMask)</span></span> &#123;</div><div class="line">    <span class="keyword">super</span>.willTransition(to: state)</div><div class="line">    <span class="keyword">switch</span> state &#123;</div><div class="line">    <span class="keyword">case</span> <span class="type">UITableViewCellStateMask</span>.showingEditControlMask:   <span class="comment">//cell进入编辑模式</span></div><div class="line">        labelTrailing.constant = -<span class="number">30</span></div><div class="line">    <span class="keyword">case</span> []:    <span class="comment">//cell退出编辑模式</span></div><div class="line">        labelTrailing.constant = <span class="number">8</span></div><div class="line">    <span class="keyword">default</span>:</div><div class="line">        <span class="keyword">break</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<p>在进入编辑模式时，将<code>label</code>的右边距同步向右移，退出编辑模式时，再恢复原有布局</p>
 <p><img src="http://upload-images.jianshu.io/upload_images/1324647-a0939c0df3dcd7c0.gif?imageMogr2/auto-orient/strip" alt="之后.gif"></p>
-<h2 id="BY-THE-WAY"><a href="#BY-THE-WAY" class="headerlink" title="BY THE WAY"></a>BY THE WAY</h2><p>在测试过程中发现其实UITableViewCell的一些系统自带的效果其实都是跟contentView同级的，例如上文的edit选择框，还有cell的accessoryType属性等等，在布局时这些细节最好还是有充分了解~~</p>
+<h2 id="BY-THE-WAY"><a href="#BY-THE-WAY" class="headerlink" title="BY THE WAY"></a>BY THE WAY</h2><p>在测试过程中发现其实<code>UITableViewCell</code>的一些系统自带的效果其实都是跟<code>contentView</code>同级的，例如上文的edit选择框，还有<code>cell</code>的<code>accessoryType</code>属性等等，在布局时这些细节最好还是有充分了解~~</p>
 <p><img src="http://upload-images.jianshu.io/upload_images/1324647-514b2d733d848c6b.gif?imageMogr2/auto-orient/strip" alt="其他.gif"></p>
 
       
@@ -609,7 +622,7 @@
 <div class="theme-info">
   Theme -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Pisces
+    NexT.Muse
   </a>
 </div>
 
@@ -645,8 +658,6 @@
 
 
 
-  
-
 
 
 
@@ -673,9 +684,6 @@
   
   <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-
 
   
 
@@ -688,13 +696,6 @@
 
   
   
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
-
-
 
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
@@ -874,6 +875,21 @@
 
 
   
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
 
   
 

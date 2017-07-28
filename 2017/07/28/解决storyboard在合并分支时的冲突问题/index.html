@@ -92,7 +92,7 @@
 <meta property="og:site_name" content="二向箔">
 <meta property="og:description" content="原文 storyboard 的反对者们总是说  合并storyboard文件就是噩梦！  这么说也到没错。但幸运的是，有简单的办法来减少冲突的几率： 保持storyboard尽可能的小这样做有以下几个好处：  降低多个开发者编辑同一个文件的几率 体积小的storyboard文件在xcode中渲染的更快（xcode是我永远的痛~~） 减少编译时间（君不见一个巨型storyboard文件编译耗时将近一">
 <meta property="og:image" content="http://zzjzz9266a.github.io/conflict_image.png">
-<meta property="og:updated_time" content="2017-07-28T10:56:56.000Z">
+<meta property="og:updated_time" content="2017-07-28T11:03:07.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="如何解决storyboard合并冲突的噩梦（译）">
 <meta name="twitter:description" content="原文 storyboard 的反对者们总是说  合并storyboard文件就是噩梦！  这么说也到没错。但幸运的是，有简单的办法来减少冲突的几率： 保持storyboard尽可能的小这样做有以下几个好处：  降低多个开发者编辑同一个文件的几率 体积小的storyboard文件在xcode中渲染的更快（xcode是我永远的痛~~） 减少编译时间（君不见一个巨型storyboard文件编译耗时将近一">
@@ -362,8 +362,9 @@
 <ul>
 <li>降低多个开发者编辑同一个文件的几率</li>
 <li>体积小的<code>storyboard</code>文件在xcode中渲染的更快（xcode是我永远的痛~~）</li>
-<li>减少编译时间（君不见一个巨型<code>storyboard</code>文件编译耗时将近一分钟！！）<br>你应该充分利用一个新特性：<code>Storyboard References</code>。如果你用不了，说明你还在支持iOS7，拜托，iOS11都快出了，还不升级留着过年么？？</li>
+<li>减少编译时间（君不见一个巨型<code>storyboard</code>文件编译耗时将近一分钟！！）</li>
 </ul>
+<p>你应该充分利用一个新特性：<code>Storyboard References</code>。如果你用不了，说明你还在支持iOS7，拜托，iOS11都快出了，还不升级留着过年么？？</p>
 <p>但是即便是再小的<code>storyboard</code>也依旧会发生冲突，可以通过以下几个步骤来快速解决：<br><a id="more"></a></p>
 <h3 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h3><p>你的版本管理工具（git）报告了冲突亦或是当你想要打开一个<code>storyboard</code>文件时提示</p>
 <blockquote>
@@ -371,18 +372,18 @@
 </blockquote>
 <p>编译失败。。。what the fuck!!</p>
 <h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p>并没有什么万金油（我的内心是崩溃的），有几个建议可供参考：</p>
-<h4 id="检查XML文件的语法"><a href="#检查XML文件的语法" class="headerlink" title="检查XML文件的语法"></a>检查XML文件的语法</h4><p><code>storyboard</code>文件实质上就是一个巨型的XML文件，可以利用很多工具来检测语法的合法性，例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">xmlLint Main.storyboard</div></pre></td></tr></table></figure></p>
-<h4 id="检查明显的冲突"><a href="#检查明显的冲突" class="headerlink" title="检查明显的冲突"></a>检查明显的冲突</h4><p>有些冲突非常明显也无关紧要，很容易解决：</p>
+<h4 id="1-检查XML文件的语法"><a href="#1-检查XML文件的语法" class="headerlink" title="1.检查XML文件的语法"></a>1.检查XML文件的语法</h4><p><code>storyboard</code>文件实质上就是一个巨型的XML文件，可以利用很多工具来检测语法的合法性，例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">xmlLint Main.storyboard</div></pre></td></tr></table></figure></p>
+<h4 id="2-检查明显的冲突"><a href="#2-检查明显的冲突" class="headerlink" title="2.检查明显的冲突"></a>2.检查明显的冲突</h4><p>有些冲突非常明显的，很容易解决：</p>
 <ul>
 <li><code>canvasLocation</code>仅仅是确定元素在<code>storyboard</code>中的位置信息，大多时候都是无关紧要的</li>
 <li>多条相同的字体调用：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;mutableArray key=”ProximaNova-Regular.otf”&gt;</div><div class="line">&lt;string&gt;ProximaNova-Regular&lt;/string&gt;</div><div class="line">&lt;string&gt;ProximaNova-Regular&lt;/string&gt;</div><div class="line">....</div></pre></td></tr></table></figure>
 </li>
 </ul>
-<p>以上类似的问题以我的经验来看完全是无关紧要的，你能以任何喜欢的方式解决。</p>
+<p>以上类似的问题以我的经验来看完全是so easy，你能以任何喜欢的方式解决。</p>
 <ul>
 <li>真正的冲突是类似于两个以上的开发人员编辑了同一条约束的值，这种情况唯一的解法只有自己沟通了。。</li>
 </ul>
-<h4 id="移除inferredMetricsTieBreakers"><a href="#移除inferredMetricsTieBreakers" class="headerlink" title="移除inferredMetricsTieBreakers"></a>移除<code>inferredMetricsTieBreakers</code></h4><p>在<code>storyboard</code>源文件的最后几行也是冲突出现的重灾区，就是叫<code>inferredMetricsTieBreakers</code>的地方<br><img src="/conflict_image.png" alt=""><br>这些只是segue的标识的罗列，所以很难分辨出正确的版本。如果你的冲突出现在这部分或是你无法打开<code>storyboard</code>文件，别怕，把它们全删了就好了。。当你再次打开文件时这些信息会重新生成的~~</p>
+<h4 id="3-移除inferredMetricsTieBreakers"><a href="#3-移除inferredMetricsTieBreakers" class="headerlink" title="3.移除inferredMetricsTieBreakers"></a>3.移除<code>inferredMetricsTieBreakers</code></h4><p>在<code>storyboard</code>源文件的最后几行也是冲突出现的重灾区，就是叫<code>inferredMetricsTieBreakers</code>的地方<br><img src="/conflict_image.png" alt=""><br>这些只是segue的标识的罗列，所以很难分辨出正确的版本。如果你的冲突出现在这部分或是你无法打开<code>storyboard</code>文件，别怕，把它们全删了就好了。。当你再次打开文件时这些信息会重新生成的~~</p>
 <blockquote>
 <p><strong>那么问题来了，<code>inferredMetricsTieBreakers</code>都是嘛玩意儿？</strong><br>它们都是<code>segues</code>的引用，是用来解决多条segue指向同一个VC时候产生的<code>simulated metrics</code>冲突问题的。它们都是<em>Interface Builder</em>自动生成的，所以你大可不必担心~~</p>
 </blockquote>
@@ -587,7 +588,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#保持storyboard尽可能的小"><span class="nav-number">1.</span> <span class="nav-text">保持storyboard尽可能的小</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#场景"><span class="nav-number">2.</span> <span class="nav-text">场景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决方案"><span class="nav-number">3.</span> <span class="nav-text">解决方案</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#检查XML文件的语法"><span class="nav-number">3.1.</span> <span class="nav-text">检查XML文件的语法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#检查明显的冲突"><span class="nav-number">3.2.</span> <span class="nav-text">检查明显的冲突</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#移除inferredMetricsTieBreakers"><span class="nav-number">3.3.</span> <span class="nav-text">移除inferredMetricsTieBreakers</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#保持storyboard尽可能的小"><span class="nav-number">1.</span> <span class="nav-text">保持storyboard尽可能的小</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#场景"><span class="nav-number">2.</span> <span class="nav-text">场景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决方案"><span class="nav-number">3.</span> <span class="nav-text">解决方案</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-检查XML文件的语法"><span class="nav-number">3.1.</span> <span class="nav-text">1.检查XML文件的语法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-检查明显的冲突"><span class="nav-number">3.2.</span> <span class="nav-text">2.检查明显的冲突</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-移除inferredMetricsTieBreakers"><span class="nav-number">3.3.</span> <span class="nav-text">3.移除inferredMetricsTieBreakers</span></a></li></ol></li></ol></div>
             
 
           </div>

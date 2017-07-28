@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="iOS,UITableView," />
+  <meta name="keywords" content="storyboard,冲突," />
 
 
 
@@ -84,21 +84,19 @@
 
 
 
-<meta name="description" content="最近在项目中使用了UITableView的编辑模式来进行多选批量操作， 但是出现一个问题，就是用storyboard布局的话，cell里的内容默认是加到了contentView上的，这就导致了tableView变成编辑模式后，cell里的内容被压缩，造成一些显示上的问题。  解决方案重写UITableCell的willTransition(to state: UITableViewCellStat">
-<meta name="keywords" content="iOS,UITableView">
+<meta name="description" content="原文 storyboard 的反对者们总是说  合并storyboard文件就是地狱！  这么说也到没错。但幸运的是，有简单的办法来减少冲突的几率： 保持storyboard尽可能的小这样做有以下几个好处：  降低多个开发者编辑同一个文件的几率 体积小的storyboard文件在xcode中渲染的更快（xcode是我永远的痛~~） 减少编译时间（君不见一个巨型storyboard文件编译耗时将近一">
+<meta name="keywords" content="storyboard,冲突">
 <meta property="og:type" content="article">
-<meta property="og:title" content="编辑模式下的UITableViewCell偏移问题">
-<meta property="og:url" content="http://zzjzz9266a.github.io/2017/04/25/编辑模式下的UITableViewCell偏移问题/index.html">
+<meta property="og:title" content="解决storyboard在合并分支时的冲突问题（翻译）">
+<meta property="og:url" content="http://zzjzz9266a.github.io/2017/07/28/解决storyboard在合并分支时的冲突问题/index.html">
 <meta property="og:site_name" content="二向箔">
-<meta property="og:description" content="最近在项目中使用了UITableView的编辑模式来进行多选批量操作， 但是出现一个问题，就是用storyboard布局的话，cell里的内容默认是加到了contentView上的，这就导致了tableView变成编辑模式后，cell里的内容被压缩，造成一些显示上的问题。  解决方案重写UITableCell的willTransition(to state: UITableViewCellStat">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1324647-fc4cb743aa86d462.gif?imageMogr2/auto-orient/strip">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1324647-a0939c0df3dcd7c0.gif?imageMogr2/auto-orient/strip">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1324647-514b2d733d848c6b.gif?imageMogr2/auto-orient/strip">
-<meta property="og:updated_time" content="2017-05-13T02:44:35.000Z">
+<meta property="og:description" content="原文 storyboard 的反对者们总是说  合并storyboard文件就是地狱！  这么说也到没错。但幸运的是，有简单的办法来减少冲突的几率： 保持storyboard尽可能的小这样做有以下几个好处：  降低多个开发者编辑同一个文件的几率 体积小的storyboard文件在xcode中渲染的更快（xcode是我永远的痛~~） 减少编译时间（君不见一个巨型storyboard文件编译耗时将近一">
+<meta property="og:image" content="http://zzjzz9266a.github.io/conflict_image.png">
+<meta property="og:updated_time" content="2017-07-28T08:47:25.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="编辑模式下的UITableViewCell偏移问题">
-<meta name="twitter:description" content="最近在项目中使用了UITableView的编辑模式来进行多选批量操作， 但是出现一个问题，就是用storyboard布局的话，cell里的内容默认是加到了contentView上的，这就导致了tableView变成编辑模式后，cell里的内容被压缩，造成一些显示上的问题。  解决方案重写UITableCell的willTransition(to state: UITableViewCellStat">
-<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/1324647-fc4cb743aa86d462.gif?imageMogr2/auto-orient/strip">
+<meta name="twitter:title" content="解决storyboard在合并分支时的冲突问题（翻译）">
+<meta name="twitter:description" content="原文 storyboard 的反对者们总是说  合并storyboard文件就是地狱！  这么说也到没错。但幸运的是，有简单的办法来减少冲突的几率： 保持storyboard尽可能的小这样做有以下几个好处：  降低多个开发者编辑同一个文件的几率 体积小的storyboard文件在xcode中渲染的更快（xcode是我永远的痛~~） 减少编译时间（君不见一个巨型storyboard文件编译耗时将近一">
+<meta name="twitter:image" content="http://zzjzz9266a.github.io/conflict_image.png">
 
 
 
@@ -126,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="http://zzjzz9266a.github.io/2017/04/25/编辑模式下的UITableViewCell偏移问题/"/>
+  <link rel="canonical" href="http://zzjzz9266a.github.io/2017/07/28/解决storyboard在合并分支时的冲突问题/"/>
 
 
 
 
 
-  <title>编辑模式下的UITableViewCell偏移问题 | 二向箔</title>
+  <title>解决storyboard在合并分支时的冲突问题（翻译） | 二向箔</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="en">
@@ -261,7 +259,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://zzjzz9266a.github.io/2017/04/25/编辑模式下的UITableViewCell偏移问题/">
+    <link itemprop="mainEntityOfPage" href="http://zzjzz9266a.github.io/2017/07/28/解决storyboard在合并分支时的冲突问题/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zzjzz9266a">
@@ -282,7 +280,7 @@
             
             
               
-                编辑模式下的UITableViewCell偏移问题
+                解决storyboard在合并分支时的冲突问题（翻译）
               
             
           </h1>
@@ -297,8 +295,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-25T14:43:11+08:00">
-                2017-04-25
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-07-28T15:42:39+08:00">
+                2017-07-28
               </time>
             
 
@@ -316,9 +314,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/04/25/编辑模式下的UITableViewCell偏移问题/#comments" itemprop="discussionUrl">
+                <a href="/2017/07/28/解决storyboard在合并分支时的冲突问题/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/04/25/编辑模式下的UITableViewCell偏移问题/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/07/28/解决storyboard在合并分支时的冲突问题/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -326,7 +324,7 @@
 
           
           
-             <span id="/2017/04/25/编辑模式下的UITableViewCell偏移问题/" class="leancloud_visitors" data-flag-title="编辑模式下的UITableViewCell偏移问题">
+             <span id="/2017/07/28/解决storyboard在合并分支时的冲突问题/" class="leancloud_visitors" data-flag-title="解决storyboard在合并分支时的冲突问题（翻译）">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -354,14 +352,42 @@
       
 
       
-        <script src="/assets/js/APlayer.min.js"> </script><script src="/assets/js/DPlayer.min.js"> </script><p>最近在项目中使用了<code>UITableView</code>的编辑模式来进行多选批量操作， 但是出现一个问题，就是用<code>storyboard</code>布局的话，<code>cell</code>里的内容默认是加到了<code>contentView</code>上的，这就导致了<code>tableView</code>变成编辑模式后，<code>cell</code>里的内容被压缩，造成一些显示上的问题。</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/1324647-fc4cb743aa86d462.gif?imageMogr2/auto-orient/strip" alt="图中给contentView设置了背景色"></p>
-<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>重写<code>UITableCell</code>的<code>willTransition(to state: UITableViewCellStateMask)</code>方法<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@IBOutlet</span> <span class="keyword">weak</span> <span class="keyword">var</span> labelTrailing: <span class="type">NSLayoutConstraint</span>!   <span class="comment">//label右边距</span></div><div class="line"></div><div class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">willTransition</span><span class="params">(to state: UITableViewCellStateMask)</span></span> &#123;</div><div class="line">    <span class="keyword">super</span>.willTransition(to: state)</div><div class="line">    <span class="keyword">switch</span> state &#123;</div><div class="line">    <span class="keyword">case</span> <span class="type">UITableViewCellStateMask</span>.showingEditControlMask:   <span class="comment">//cell进入编辑模式</span></div><div class="line">        labelTrailing.constant = -<span class="number">30</span></div><div class="line">    <span class="keyword">case</span> []:    <span class="comment">//cell退出编辑模式</span></div><div class="line">        labelTrailing.constant = <span class="number">8</span></div><div class="line">    <span class="keyword">default</span>:</div><div class="line">        <span class="keyword">break</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<a id="more"></a>
-<p>在进入编辑模式时，将<code>label</code>的右边距同步向右移，退出编辑模式时，再恢复原有布局</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/1324647-a0939c0df3dcd7c0.gif?imageMogr2/auto-orient/strip" alt="之后.gif"></p>
-<h2 id="BY-THE-WAY"><a href="#BY-THE-WAY" class="headerlink" title="BY THE WAY"></a>BY THE WAY</h2><p>在测试过程中发现其实<code>UITableViewCell</code>的一些系统自带的效果其实都是跟<code>contentView</code>同级的，例如上文的edit选择框，还有<code>cell</code>的<code>accessoryType</code>属性等等，在布局时这些细节最好还是有充分了解~~</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/1324647-514b2d733d848c6b.gif?imageMogr2/auto-orient/strip" alt="其他.gif"></p>
+        <script src="/assets/js/DPlayer.min.js"> </script><script src="/assets/js/APlayer.min.js"> </script><p><strong><a href="https://medium.com/@mzygar/resolving-storyboard-merge-conflicts-94eae558acb8" target="_blank" rel="external">原文</a></strong></p>
+<p><code>storyboard</code> 的反对者们总是说</p>
+<blockquote>
+<p>合并<code>storyboard</code>文件就是地狱！</p>
+</blockquote>
+<p>这么说也到没错。但幸运的是，有简单的办法来减少冲突的几率：</p>
+<h3 id="保持storyboard尽可能的小"><a href="#保持storyboard尽可能的小" class="headerlink" title="保持storyboard尽可能的小"></a>保持<code>storyboard</code>尽可能的小</h3><p>这样做有以下几个好处：</p>
+<ul>
+<li>降低多个开发者编辑同一个文件的几率</li>
+<li>体积小的<code>storyboard</code>文件在xcode中渲染的更快（xcode是我永远的痛~~）</li>
+<li>减少编译时间（君不见一个巨型<code>storyboard</code>文件编译耗时将近一分钟！！）<br>你应该充分利用一个新特性：<code>Storyboard References</code>。如果你用不了，说明你还在支持iOS7，拜托，iOS11都快出了，还不升级留着过年么？？</li>
+</ul>
+<p>但是即便是再小的<code>storyboard</code>也依旧会发生冲突，可以通过以下几个步骤来快速解决：<br><a id="more"></a></p>
+<h3 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h3><p>你的版本管理工具（git）报告了冲突亦或是当你想要打开一个<code>storyboard</code>文件时提示</p>
+<blockquote>
+<p>The document “Main.storyboard” could not be opened. The operation couldn’t be completed. (com.apple.InterfaceBuilder error -1.)</p>
+</blockquote>
+<p>编译失败。。。what the fuck!!</p>
+<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><p>并没有什么万金油（我的内心是崩溃的），有几个建议可供参考：</p>
+<h4 id="检查XML文件的语法"><a href="#检查XML文件的语法" class="headerlink" title="检查XML文件的语法"></a>检查XML文件的语法</h4><p><code>storyboard</code>文件实质上就是一个巨型的XML文件，可以利用很多工具来检测语法的合法性，例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">xmlLint Main.storyboard</div></pre></td></tr></table></figure></p>
+<h4 id="检查明显的冲突"><a href="#检查明显的冲突" class="headerlink" title="检查明显的冲突"></a>检查明显的冲突</h4><p>有些冲突非常明显也无关紧要，很容易解决：</p>
+<ul>
+<li><code>canvasLocation</code>仅仅是确定元素在<code>storyboard</code>中的位置信息，大多时候都是无关紧要的</li>
+<li>多条相同的字体调用：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;mutableArray key=”ProximaNova-Regular.otf”&gt;</div><div class="line">&lt;string&gt;ProximaNova-Regular&lt;/string&gt;</div><div class="line">&lt;string&gt;ProximaNova-Regular&lt;/string&gt;</div><div class="line">....</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>以上类似的问题以我的经验来看完全是无关紧要的，你能以任何喜欢的方式解决。</p>
+<ul>
+<li>真正的冲突是类似于两个以上的开发人员编辑了同一条约束的值，这种情况唯一的解法只有自己沟通了。。</li>
+</ul>
+<h4 id="移除inferredMetricsTieBreakers"><a href="#移除inferredMetricsTieBreakers" class="headerlink" title="移除inferredMetricsTieBreakers"></a>移除<code>inferredMetricsTieBreakers</code></h4><p>在<code>storyboard</code>源文件的最后几行也是冲突出现的重灾区，就是叫<code>inferredMetricsTieBreakers</code>的地方<br><img src="/conflict_image.png" alt=""><br>这些只是segue的标识的罗列，所以很难分辨出正确的版本。如果你的冲突出现在这部分或是你无法打开<code>storyboard</code>文件，别怕，把它们全删了就好了。。当你再次打开文件时这些信息会重新生成的~~</p>
+<blockquote>
+<p><strong>那么问题来了，<code>inferredMetricsTieBreakers</code>都是嘛玩意儿？</strong><br>它们都是<code>segues</code>的引用，是用来解决多条segue指向同一个VC时候产生的<code>simulated metrics</code>冲突问题的。它们都是<em>Interface Builder</em>自动生成的，所以你大可不必担心~~</p>
+</blockquote>
+<p>关于此处可参阅<a href="http://stackoverflow.com/a/25003909/843366" target="_blank" rel="external">stackoverflow</a>了解更多。</p>
+<p>希望以上的内容可以为你节省一些时间，我也希望苹果能够在xcode8中能够对IB做出提升，以减少自身冲突的产生。（然鹅并没有。。）<br>就酱~~</p>
 
       
     </div>
@@ -391,9 +417,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/iOS/" rel="tag"># iOS</a>
+            <a href="/tags/storyboard/" rel="tag"># storyboard</a>
           
-            <a href="/tags/UITableView/" rel="tag"># UITableView</a>
+            <a href="/tags/冲突/" rel="tag"># 冲突</a>
           
         </div>
       
@@ -406,18 +432,14 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/04/27/弹唱：爱的箴言/" rel="next" title="自弹自唱">
-                <i class="fa fa-chevron-left"></i> 自弹自唱
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/12/25/基于ObjectMapper的本地缓存/" rel="prev" title="基于ObjectMapper的本地缓存">
-                基于ObjectMapper的本地缓存 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/05/10/自动打包上传脚本/" rel="prev" title="自动打包上传脚本">
+                自动打包上传脚本 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -565,7 +587,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#解决方案"><span class="nav-number">1.</span> <span class="nav-text">解决方案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BY-THE-WAY"><span class="nav-number">2.</span> <span class="nav-text">BY THE WAY</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#保持storyboard尽可能的小"><span class="nav-number">1.</span> <span class="nav-text">保持storyboard尽可能的小</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#场景"><span class="nav-number">2.</span> <span class="nav-text">场景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决方案"><span class="nav-number">3.</span> <span class="nav-text">解决方案</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#检查XML文件的语法"><span class="nav-number">3.1.</span> <span class="nav-text">检查XML文件的语法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#检查明显的冲突"><span class="nav-number">3.2.</span> <span class="nav-text">检查明显的冲突</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#移除inferredMetricsTieBreakers"><span class="nav-number">3.3.</span> <span class="nav-text">移除inferredMetricsTieBreakers</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -703,9 +725,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://zzjzz9266a.github.io/2017/04/25/编辑模式下的UITableViewCell偏移问题/';
-          this.page.identifier = '2017/04/25/编辑模式下的UITableViewCell偏移问题/';
-          this.page.title = '编辑模式下的UITableViewCell偏移问题';
+          this.page.url = 'http://zzjzz9266a.github.io/2017/07/28/解决storyboard在合并分支时的冲突问题/';
+          this.page.identifier = '2017/07/28/解决storyboard在合并分支时的冲突问题/';
+          this.page.title = '解决storyboard在合并分支时的冲突问题（翻译）';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://zzjzz9266a-github-io.disqus.com/embed.js';
